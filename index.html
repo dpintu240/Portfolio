@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pintu's Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Custom class for scroll-triggered animations */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Style for active navigation link */
+        .nav-active {
+            color: #3b82f6; /* blue-500 */
+            font-weight: 600;
+        }
+        
+        /* Tooltip container */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Tooltip text */
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #1e293b;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position above */
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.75rem;
+            pointer-events: none;
+            border: 1px solid #334155;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-slate-300">
+
+    <!-- Header -->
+    <header class="bg-slate-900/70 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-slate-800">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Replace with your name or initials -->
+            <a href="#home" class="text-xl font-bold text-white">Pintu Das</a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="nav-link hover:text-blue-500 transition-colors duration-300">Home</a>
+                <a href="#about" class="nav-link hover:text-blue-500 transition-colors duration-300">About</a>
+                <a href="#projects" class="nav-link hover:text-blue-500 transition-colors duration-300">Research</a>
+                <a href="#contact" class="nav-link hover:text-blue-500 transition-colors duration-300">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+             <a href="#home" class="block py-2 nav-link hover:text-blue-500 transition-colors duration-300">Home</a>
+             <a href="#about" class="block py-2 nav-link hover:text-blue-500 transition-colors duration-300">About</a>
+             <a href="#projects" class="block py-2 nav-link hover:text-blue-500 transition-colors duration-300">Research</a>
+             <a href="#contact" class="block py-2 nav-link hover:text-blue-500 transition-colors duration-300">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 pt-24 md:pt-32">
+
+        <!-- Home/Hero Section -->
+        <section id="home" class="min-h-[80vh] flex flex-col-reverse md:flex-row items-center justify-center text-center md:text-left fade-in-section">
+            <div class="md:w-1/2">
+                <span class="text-blue-400 font-semibold">Hello, I'm</span>
+                <h1 class="text-4xl md:text-6xl font-bold text-white mt-2 mb-4">Pintu Das</h1>
+                <h2 class="text-2xl md:text-3xl font-medium text-slate-400 mb-8">Research Scholar</h2>
+                <p class="max-w-xl mx-auto md:mx-0 mb-8">Specializing in Geography and Environmental Science, with a focus on morphometric analysis, flood risk assessment, and machine learning applications in hydrology.</p>
+                
+                <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/in/pintu-das-23211217b/" target="_blank" class="tooltip p-3 bg-slate-800 rounded-lg hover:bg-[#0077b5] hover:text-white transition-colors duration-300 text-blue-400" aria-label="LinkedIn">
+                        <i data-feather="linkedin"></i>
+                        <span class="tooltiptext">LinkedIn</span>
+                    </a>
+                    
+                    <!-- ResearchGate -->
+                    <a href="https://www.researchgate.net/profile/Pintu-Das-7?ev=hdr_xprf" target="_blank" class="tooltip p-3 bg-slate-800 rounded-lg hover:bg-[#00ccbb] hover:text-white transition-colors duration-300 text-teal-400" aria-label="ResearchGate">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.564.377-.97.907-1.215 1.593-.162-.054-.336-.088-.522-.102-.345-.027-.723.042-1.134.207-.41.165-.82.427-1.228.783-.408.358-.787.794-1.136 1.31-.482.71-.85 1.54-1.106 2.493-.082.308-.146.626-.192.955l-.034.298h-1.35v1.23h1.36c.03.743.14 1.485.33 2.227.188.742.457 1.455.807 2.138.35.683.774 1.322 1.272 1.918.498.596 1.063 1.13 1.696 1.602.634.472 1.33.86 2.09 1.165.758.305 1.564.503 2.418.595.854.09 1.745.093 2.673.006.58-.053 1.127-.156 1.643-.308.515-.15.992-.35 1.43-.6.44-.25.836-.547 1.19-.893.352-.346.657-.74.914-1.18.257-.442.465-.927.625-1.458.16-.53.266-1.1.317-1.708.05-.608.05-1.25.002-1.925l-.01-.137h-3.93v2.46h1.232v.21c.02.39-.02.776-.118 1.157-.098.38-.255.74-.47 1.075-.216.336-.49.637-.822.903-.332.266-.72.483-1.166.65-.445.166-.94.276-1.483.33-.543.053-1.117.046-1.722-.02-.605-.067-1.21-.21-1.815-.43-.605-.218-1.18-.518-1.725-.9-.545-.382-1.04-.84-1.485-1.374-.445-.534-.827-1.127-1.146-1.777-.318-.65-.558-1.337-.718-2.06-.16-.723-.238-1.472-.234-2.247l.004-.37h5.05v-2.46h-4.99c.045-.59.13-1.156.257-1.697.127-.54.298-1.05.513-1.527.215-.477.478-.91.79-1.3.31-.39.673-.72 1.086-.99.413-.27.875-.46 1.385-.572.51-.11 1.066-.13 1.667-.06.6.07 1.232.23 1.895.48.663.25 1.35.59 2.062 1.02l1.64-2.09c-.83-.564-1.68-.996-2.55-1.296-.87-.3-1.737-.47-2.602-.51z"/></svg>
+                        <span class="tooltiptext">ResearchGate</span>
+                    </a>
+
+                    <!-- Google Scholar -->
+                    <a href="https://scholar.google.com/citations?hl=en&user=-IJKGfAAAAAJ" target="_blank" class="tooltip p-3 bg-slate-800 rounded-lg hover:bg-white hover:text-slate-900 transition-colors duration-300 text-blue-300" aria-label="Google Scholar">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+                        <span class="tooltiptext">Google Scholar</span>
+                    </a>
+
+                    <!-- Vidwan (Custom Icon: User/Graduation) -->
+                    <a href="https://vidwan.inflibnet.ac.in/profile/657502" target="_blank" class="tooltip p-3 bg-slate-800 rounded-lg hover:bg-orange-600 hover:text-white transition-colors duration-300 text-orange-400" aria-label="Vidwan">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        <span class="tooltiptext">Vidwan ID</span>
+                    </a>
+
+                    <!-- Web of Science (Custom Icon: Globe/Science) -->
+                    <a href="https://www.webofscience.com/wos/author/record/OJU-3713-2025" target="_blank" class="tooltip p-3 bg-slate-800 rounded-lg hover:bg-purple-600 hover:text-white transition-colors duration-300 text-purple-400" aria-label="Web of Science">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        <span class="tooltiptext">Web of Science</span>
+                    </a>
+
+                    <!-- Scopus (Custom Icon: Stylized S) -->
+                    <a href="https://www.scopus.com/authid/detail.uri?authorId=60138708400" target="_blank" class="tooltip p-3 bg-slate-800 rounded-lg hover:bg-orange-500 hover:text-white transition-colors duration-300 text-orange-500" aria-label="Scopus">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
+                        <span class="tooltiptext">Scopus</span>
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center mb-10 md:mb-0">
+                <img src="Passport_Image.jpg" alt="Pintu Das" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-slate-700 shadow-lg shadow-blue-900/20">
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 fade-in-section">
+            <h2 class="text-3xl font-bold text-white text-center mb-2">About Me</h2>
+            <p class="text-center text-slate-400 mb-12">Academic Background & Expertise</p>
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <p class="mb-4 leading-relaxed">
+                        I am a dedicated Research Scholar with a strong foundation in Geography. My research interests primarily revolve around the intricate dynamics of river basins, specifically focusing on morphometric analysis and flood risk assessment in the Eastern Himalayas.
+                    </p>
+                    <p class="mb-4 leading-relaxed">
+                        I am passionate about integrating modern technological tools with traditional geographical studies. My work involves the application of Machine Learning algorithms and Geographic Information Systems (GIS) to model hydrological behaviors and predict environmental risks, contributing to better disaster management strategies.
+                    </p>
+                    <p class="leading-relaxed">
+                        Through my publications and research, I aim to bridge the gap between theoretical geomorphology and practical environmental solutions.
+                    </p>
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-xl font-semibold text-white mb-4">Research Skills & Tools</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-slate-800 text-blue-300 py-2 px-4 rounded-md font-medium border border-slate-700">ArcGIS & QGIS</span>
+                        <span class="bg-slate-800 text-blue-300 py-2 px-4 rounded-md font-medium border border-slate-700">Remote Sensing</span>
+                        <span class="bg-slate-800 text-blue-300 py-2 px-4 rounded-md font-medium border border-slate-700">Morphometric Analysis</span>
+                        <span class="bg-slate-800 text-blue-300 py-2 px-4 rounded-md font-medium border border-slate-700">Flood Risk Modeling</span>
+                        <span class="bg-slate-800 text-blue-300 py-2 px-4 rounded-md font-medium border border-slate-700">Machine Learning</span>
+                        <span class="bg-slate-800 text-blue-300 py-2 px-4 rounded-md font-medium border border-slate-700">Python/R</span>
+                        <span class="bg-slate-800 text-blue-300 py-2 px-4 rounded-md font-medium border border-slate-700">Academic Writing</span>
+                        <span class="bg-slate-800 text-blue-300 py-2 px-4 rounded-md font-medium border border-slate-700">Data Visualization</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 fade-in-section">
+            <h2 class="text-3xl font-bold text-white text-center mb-2">My Research Works</h2>
+            <p class="text-center text-slate-400 mb-12">Selected Publications & Studies</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project Card 1 -->
+                <div class="bg-slate-800 rounded-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 shadow-lg border border-slate-700">
+                    <!-- 
+                         UPDATED IMAGE SOURCE:
+                         - Changed to 'Research_Image_1.jpg'
+                         - Please upload your specific flood risk map/diagram with this filename.
+                    -->
+                    <img src="Research_Image_1.jpg" onerror="this.src='https://placehold.co/600x400/1e293b/94a3b8?text=Upload+Research+Image'" alt="Flood Risk Assessment Map" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-white mb-2 leading-tight">Integrated morphometric and machine learning-based flood risk assessment</h3>
+                        <p class="text-sm text-slate-400 mb-4">A comprehensive investigation of the Rangit River Basin to clarify hydrological behavior using morphometric analysis and ML algorithms to prioritize sub-watersheds.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://scholar.google.com/citations?hl=en&user=-IJKGfAAAAAJ" target="_blank" class="text-blue-400 hover:text-blue-500 font-semibold flex items-center gap-2 text-sm">View Publication <i data-feather="external-link" class="w-4 h-4"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="bg-slate-800 rounded-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 shadow-lg border border-slate-700">
+                    <img src="https://placehold.co/600x400/1e293b/94a3b8?text=Research+Work" alt="Project 2" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-white mb-2 leading-tight">Research Title</h3>
+                        <p class="text-sm text-slate-400 mb-4">Description of the research work goes here.</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-blue-400 hover:text-blue-500 font-semibold flex items-center gap-2 text-sm">View Publication <i data-feather="external-link" class="w-4 h-4"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="bg-slate-800 rounded-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 shadow-lg border border-slate-700">
+                    <img src="https://placehold.co/600x400/1e293b/94a3b8?text=Research+Work" alt="Project 3" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-white mb-2 leading-tight">Research Title</h3>
+                        <p class="text-sm text-slate-400 mb-4">Description of the research work goes here.</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-blue-400 hover:text-blue-500 font-semibold flex items-center gap-2 text-sm">View Publication <i data-feather="external-link" class="w-4 h-4"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 text-center fade-in-section">
+            <h2 class="text-3xl font-bold text-white mb-2">Get In Touch</h2>
+            <p class="text-slate-400 mb-8 max-w-2xl mx-auto">I'm open to research collaborations and academic discussions. Feel free to reach out via email.</p>
+            <!-- Replace with your email -->
+            <a href="mailto:your.email@example.com" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg transition-transform transform hover:scale-105 duration-300 inline-block">
+                Send Email
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800">
+        <div class="container mx-auto px-6 py-6 text-center text-slate-500">
+            <p>&copy; 2025 Pintu Das. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Feather Icons Initialization ---
+        feather.replace();
+
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Smooth Scrolling & Active Nav Link ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                
+                if (targetId === '#') {
+                    return;
+                }
+
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.remove('nav-active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('nav-active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // --- Fade-in Animation on Scroll ---
+        const faders = document.querySelectorAll('.fade-in-section');
+        const appearOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('is-visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+    </script>
+</body>
+
+</html>
