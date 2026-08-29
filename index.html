@@ -1,339 +1,930 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pintu's Portfolio</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
+    <title>Pintu Das | Research Scholar Portfolio</title>
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Feather Icons -->
-    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
-        body {
+        :root {
+            --primary-color: #0f172a;
+            --secondary-color: #3b82f6;
+            --accent-color: #10b981;
+            --bg-light: #f8fafc;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: 'Inter', sans-serif;
         }
 
-        /* Custom class for scroll-triggered animations */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
+        /* Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
 
-        /* Style for active navigation link */
-        .nav-active {
-            color: #3b82f6; /* blue-500 */
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 2rem 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            min-height: 100vh;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-greeting {
+            color: var(--secondary-color);
             font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: var(--primary-color);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            background: var(--white);
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border: 1px solid #e2e8f0;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            transform: translateX(80px); /* এই লাইনটি যোগ করলে ডানদিকে সরবে */
+        }
+
+        .hero-image img {
+            width: 300px;
+            height: 360px;
+            object-fit: cover;
+            object-position: top; /* এই নতুন লাইনটি যোগ করুন */
+            border-radius: 20px;
+            border: 8px solid var(--white);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 360px;
+            background: var(--secondary-color);
+            border-radius: 20px; /* এখানে 50% এর বদলে 20px করা হয়েছে */
+            z-index: 1;
+            top: 15px;
+            right: 60px;
+            opacity: 0.1;
+        }
+
+        /* Section Global */
+        section {
+            padding: 80px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-bottom: 3rem;
+            display: block;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 4rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .skills-container {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .skills-container h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background: #f1f5f9;
+            color: var(--text-main);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Education & Seminars Section */
+        .academic-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .academic-box {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #f1f5f9;
         }
         
-        /* Tooltip container */
-        .tooltip {
+        .academic-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.5rem;
+        }
+
+        /* Timeline for Education */
+        .timeline {
             position: relative;
-            display: inline-block;
+            border-left: 2px solid var(--secondary-color);
+            padding-left: 1.5rem;
+            margin-left: 0.5rem;
         }
 
-        /* Tooltip text */
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 120px;
-            background-color: #1e293b;
-            color: #fff;
-            text-align: center;
-            padding: 5px 0;
-            border-radius: 6px;
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
             position: absolute;
-            z-index: 1;
-            bottom: 125%; /* Position above */
-            left: 50%;
-            margin-left: -60px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 0.75rem;
-            pointer-events: none;
-            border: 1px solid #334155;
+            left: -29px; /* Adjust based on padding */
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: var(--white);
+            border: 4px solid var(--secondary-color);
+            border-radius: 50%;
         }
 
-        /* Show the tooltip text when you mouse over the tooltip container */
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            display: inline-block;
+            background: #eff6ff;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .timeline-item h4 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .timeline-item h5 {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-item p {
+            font-size: 0.9rem;
+        }
+
+        /* Seminar List */
+        .seminar-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .seminar-item {
+            padding: 1.2rem;
+            background: #f8fafc;
+            border-left: 4px solid var(--accent-color);
+            border-radius: 0 8px 8px 0;
+            transition: var(--transition);
+        }
+
+        .seminar-item:hover {
+            transform: translateX(5px);
+            background: #f1f5f9;
+        }
+
+        .seminar-date {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .seminar-item h4 {
+            color: var(--primary-color);
+            font-size: 1.05rem;
+            margin-bottom: 0.6rem; 
+        }
+
+        .seminar-item h5 {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.6rem; 
+        }
+
+        /* Research Section */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .research-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border: 1px solid #f1f5f9;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .research-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px rgba(0,0,0,0.1);
+        }
+
+        .research-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .research-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .journal-tag {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .research-content h3 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .research-content p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .authors {
+            font-size: 0.85rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .research-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .research-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            background: var(--white);
+            padding: 80px 2rem;
+            border-radius: 20px;
+            margin: 40px auto 80px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            max-width: 1200px;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-section p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-btn {
+            font-size: 1.1rem;
+            padding: 1rem 2.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 150px;
+            }
+            .hero p {
+                margin: 0 auto 2rem;
+            }
+            .social-links {
+                justify-content: center;
+            }
+            .about-grid, .academic-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-image::after {
+                right: 50%;
+                transform: translateX(50%);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            nav a {
+                margin: 0 1rem;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
         }
     </style>
 </head>
+<body>
 
-<body class="bg-slate-900 text-slate-300">
-
-    <!-- Header -->
-    <header class="bg-slate-900/70 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-slate-800">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Replace with your name or initials -->
-            <a href="#home" class="text-xl font-bold text-white">Pintu Das</a>
-            <nav class="hidden md:flex space-x-8 items-center">
-                <a href="#home" class="nav-link hover:text-blue-500 transition-colors duration-300">Home</a>
-                <a href="#about" class="nav-link hover:text-blue-500 transition-colors duration-300">About</a>
-                <a href="#projects" class="nav-link hover:text-blue-500 transition-colors duration-300">Research</a>
-                <a href="#contact" class="nav-link hover:text-blue-500 transition-colors duration-300">Contact</a>
+    <!-- Header / Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#home" class="logo">Pintu <span>Das</span></a>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#education">Education</a>
+                <a href="#research">Research</a>
+                <a href="#certifications">Certifications</a>
+                <a href="#contact">Contact</a>
             </nav>
-            <button id="mobile-menu-button" class="md:hidden text-white">
-                <i data-feather="menu"></i>
-            </button>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-             <a href="#home" class="block py-2 nav-link hover:text-blue-500 transition-colors duration-300">Home</a>
-             <a href="#about" class="block py-2 nav-link hover:text-blue-500 transition-colors duration-300">About</a>
-             <a href="#projects" class="block py-2 nav-link hover:text-blue-500 transition-colors duration-300">Research</a>
-             <a href="#contact" class="block py-2 nav-link hover:text-blue-500 transition-colors duration-300">Contact</a>
         </div>
     </header>
 
-    <main class="container mx-auto px-6 pt-24 md:pt-32">
-
-        <!-- Home/Hero Section -->
-        <section id="home" class="min-h-[80vh] flex flex-col-reverse md:flex-row items-center justify-center text-center md:text-left fade-in-section">
-            <div class="md:w-1/2">
-                <span class="text-blue-400 font-semibold">Hello, I'm</span>
-                <h1 class="text-4xl md:text-6xl font-bold text-white mt-2 mb-4">Pintu Das</h1>
-                <h2 class="text-2xl md:text-3xl font-medium text-slate-400 mb-8">Research Scholar</h2>
-                <p class="max-w-xl mx-auto md:mx-0 mb-8">Specializing in Geography and Environmental Science, with a focus on morphometric analysis, flood risk assessment, and machine learning applications in hydrology.</p>
+    <!-- Hero Section -->
+    <main id="home">
+        <section class="hero">
+            <div class="hero-content">
+                <span class="hero-greeting">Hello, I'm</span>
+                <h1>Pintu Das</h1>
+                <h2>Research Scholar, Raiganj University</h2>
+                <p style="text-align: justify;">A passionate PhD researcher with a strong foundation in Fluvial Geomorphology, currently driven by a core interest in multi-hazard risk modeling. My doctoral work aims to develop effective disaster management frameworks using RS/GIS, MCDM, Machine Learning(ML) and Deep Learning(DL).</p>
                 
-                <div class="flex flex-wrap gap-3 justify-center md:justify-start">
-                    <!-- LinkedIn -->
-                    <a href="https://www.linkedin.com/in/pintu-das-23211217b/" target="_blank" class="tooltip p-3 bg-slate-800 rounded-lg hover:bg-[#0077b5] hover:text-white transition-colors duration-300 text-blue-400" aria-label="LinkedIn">
-                        <i data-feather="linkedin"></i>
-                        <span class="tooltiptext">LinkedIn</span>
-                    </a>
-                    
-                    <!-- ResearchGate -->
-                    <a href="https://www.researchgate.net/profile/Pintu-Das-7?ev=hdr_xprf" target="_blank" class="tooltip p-3 bg-slate-800 rounded-lg hover:bg-[#00ccbb] hover:text-white transition-colors duration-300 text-teal-400" aria-label="ResearchGate">
-                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.564.377-.97.907-1.215 1.593-.162-.054-.336-.088-.522-.102-.345-.027-.723.042-1.134.207-.41.165-.82.427-1.228.783-.408.358-.787.794-1.136 1.31-.482.71-.85 1.54-1.106 2.493-.082.308-.146.626-.192.955l-.034.298h-1.35v1.23h1.36c.03.743.14 1.485.33 2.227.188.742.457 1.455.807 2.138.35.683.774 1.322 1.272 1.918.498.596 1.063 1.13 1.696 1.602.634.472 1.33.86 2.09 1.165.758.305 1.564.503 2.418.595.854.09 1.745.093 2.673.006.58-.053 1.127-.156 1.643-.308.515-.15.992-.35 1.43-.6.44-.25.836-.547 1.19-.893.352-.346.657-.74.914-1.18.257-.442.465-.927.625-1.458.16-.53.266-1.1.317-1.708.05-.608.05-1.25.002-1.925l-.01-.137h-3.93v2.46h1.232v.21c.02.39-.02.776-.118 1.157-.098.38-.255.74-.47 1.075-.216.336-.49.637-.822.903-.332.266-.72.483-1.166.65-.445.166-.94.276-1.483.33-.543.053-1.117.046-1.722-.02-.605-.067-1.21-.21-1.815-.43-.605-.218-1.18-.518-1.725-.9-.545-.382-1.04-.84-1.485-1.374-.445-.534-.827-1.127-1.146-1.777-.318-.65-.558-1.337-.718-2.06-.16-.723-.238-1.472-.234-2.247l.004-.37h5.05v-2.46h-4.99c.045-.59.13-1.156.257-1.697.127-.54.298-1.05.513-1.527.215-.477.478-.91.79-1.3.31-.39.673-.72 1.086-.99.413-.27.875-.46 1.385-.572.51-.11 1.066-.13 1.667-.06.6.07 1.232.23 1.895.48.663.25 1.35.59 2.062 1.02l1.64-2.09c-.83-.564-1.68-.996-2.55-1.296-.87-.3-1.737-.47-2.602-.51z"/></svg>
-                        <span class="tooltiptext">ResearchGate</span>
-                    </a>
+    <!-- National Eligibility Badges -->
+<div style="display: flex; gap: 10px; margin-bottom: 25px; align-items: center; flex-wrap: wrap;">
+    <span style="background: #e0f2fe; color: #0369a1; padding: 6px 12px; border-radius: 30px; font-weight: 600; font-size: 0.85rem; border: 1px solid #bae6fd; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;">
+        <i class="fas fa-award"></i> UGC NET Qualified
+    </span>
+    
+    <span style="background: #d1fae5; color: #047857; padding: 6px 12px; border-radius: 30px; font-weight: 600; font-size: 0.85rem; border: 1px solid #a7f3d0; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;">
+        <i class="fas fa-medal"></i> WBSET Qualified
+    </span>
+    
+    <span style="background: #fef3c7; color: #b45309; padding: 6px 12px; border-radius: 30px; font-weight: 600; font-size: 0.85rem; border: 1px solid #fde68a; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;">
+        <i class="fas fa-star"></i> CTET Qualified
+    </span>
+</div>
 
-                    <!-- Google Scholar -->
-                    <a href="https://scholar.google.com/citations?hl=en&user=-IJKGfAAAAAJ" target="_blank" class="tooltip p-3 bg-slate-800 rounded-lg hover:bg-white hover:text-slate-900 transition-colors duration-300 text-blue-300" aria-label="Google Scholar">
-                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
-                        <span class="tooltiptext">Google Scholar</span>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/pintu-das-23211217b/" target="_blank">
+                        <i class="fab fa-linkedin" style="color: #0a66c2;"></i> LinkedIn
                     </a>
-
-                    <!-- Vidwan (Custom Icon: User/Graduation) -->
-                    <a href="https://vidwan.inflibnet.ac.in/profile/657502" target="_blank" class="tooltip p-3 bg-slate-800 rounded-lg hover:bg-orange-600 hover:text-white transition-colors duration-300 text-orange-400" aria-label="Vidwan">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-                        <span class="tooltiptext">Vidwan ID</span>
+                    <a href="https://www.researchgate.net/profile/Pintu-Das-7?ev=hdr_xprf" target="_blank">
+                        <i class="fab fa-researchgate" style="color: #00ccbb;"></i> ResearchGate
                     </a>
-
-                    <!-- Web of Science (Custom Icon: Globe/Science) -->
-                    <a href="https://www.webofscience.com/wos/author/record/OJU-3713-2025" target="_blank" class="tooltip p-3 bg-slate-800 rounded-lg hover:bg-purple-600 hover:text-white transition-colors duration-300 text-purple-400" aria-label="Web of Science">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                        <span class="tooltiptext">Web of Science</span>
+                    <a href="https://scholar.google.com/citations?hl=en&user=-IJKGfAAAAAJ" target="_blank">
+                        <i class="fas fa-graduation-cap" style="color: #4285f4;"></i> Google Scholar
                     </a>
-
-                    <!-- Scopus (Custom Icon: Stylized S) -->
-                    <a href="https://www.scopus.com/authid/detail.uri?authorId=60138708400" target="_blank" class="tooltip p-3 bg-slate-800 rounded-lg hover:bg-orange-500 hover:text-white transition-colors duration-300 text-orange-500" aria-label="Scopus">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
-                        <span class="tooltiptext">Scopus</span>
+                    <a href="https://vidwan.inflibnet.ac.in/profile/657502" target="_blank">
+                        <i class="fas fa-id-badge" style="color: #f59e0b;"></i> Vidwan ID
                     </a>
+                    <a href="https://www.webofscience.com/wos/author/record/OJU-3713-2025" target="_blank">
+                        <i class="fas fa-book" style="color: #8b5cf6;"></i> Web of Science
+                    </a>
+                    <a href="https://x.com/dpintu240" target="_blank">
+                    <i class="fa-brands fa-x-twitter" style="color: #000000;"></i> X (Twitter)
+                </a>
                 </div>
+                
+                <a href="#contact" class="btn">Get in Touch</a>
             </div>
-            <div class="md:w-1/2 flex justify-center mb-10 md:mb-0">
-                <img src="Passport_Image.jpg" alt="Pintu Das" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-slate-700 shadow-lg shadow-blue-900/20">
+            <div class="hero-image">
+                <img src="Passport_Image.jpg" alt="Pintu Das - Profile Picture" onerror="this.src='https://placehold.co/400x400/e2e8f0/64748b?text=Profile+Photo'">
             </div>
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-20 fade-in-section">
-            <h2 class="text-3xl font-bold text-white text-center mb-2">About Me</h2>
-            <p class="text-center text-slate-400 mb-12">Academic Background & Expertise</p>
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/2">
-                    <p class="mb-4 leading-relaxed">
-                        I am a dedicated Research Scholar with a strong foundation in Geography. My research interests primarily revolve around the intricate dynamics of river basins, specifically focusing on morphometric analysis and flood risk assessment in the Eastern Himalayas.
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <span class="section-subtitle">Academic Background & Expertise</span>
+            
+            <div class="about-grid">
+                <div class="about-text">
+                    <p style="text-align: justify; margin-bottom: 1.5rem;">
+        I have recently embarked on my doctoral journey as a PhD Research Scholar at <strong>Raiganj University</strong>, specializing in Geography and Environmental Science. Building upon a strong academic foundation in Fluvial Geomorphology, my research focuses on the <em>"Geospatial Modelling of Multi-Hazard Risk in the Rangit River Basin: Integrating Flood and Landslide Modelling."</em>
                     </p>
-                    <p class="mb-4 leading-relaxed">
-                        I am passionate about integrating modern technological tools with traditional geographical studies. My work involves the application of Machine Learning algorithms and Geographic Information Systems (GIS) to model hydrological behaviors and predict environmental risks, contributing to better disaster management strategies.
+                    <p style="text-align: justify; margin-bottom: 1.5rem;">
+        I am deeply passionate about bridging the gap between traditional geographical studies and modern computational intelligence. My work involves the application of Geographic Information Systems (GIS), Remote Sensing, Machine Learning (ML), Deep Learning (DL), and Multi-Criteria Decision-Making (MCDM) techniques to model complex hydrological behaviors and evaluate environmental vulnerabilities.
                     </p>
-                    <p class="leading-relaxed">
-                        Through my publications and research, I aim to bridge the gap between theoretical geomorphology and practical environmental solutions.
+                    <p style="text-align: justify;">
+        Although I am at the early stages of my PhD, I am actively contributing to the academic community. I have already published two peer-reviewed research papers and presented my ongoing work at academic seminars. Moving forward, my ultimate goal is to develop robust, geospatial decision-support frameworks that can aid in sustainable disaster management in the ecologically fragile Eastern Himalayas.
                     </p>
                 </div>
-                <div class="md:w-1/2">
-                    <h3 class="text-xl font-semibold text-white mb-4">Research Skills & Tools</h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="bg-slate-800 text-blue-300 py-2 px-4 rounded-md font-medium border border-slate-700">ArcGIS & QGIS</span>
-                        <span class="bg-slate-800 text-blue-300 py-2 px-4 rounded-md font-medium border border-slate-700">Remote Sensing</span>
-                        <span class="bg-slate-800 text-blue-300 py-2 px-4 rounded-md font-medium border border-slate-700">Morphometric Analysis</span>
-                        <span class="bg-slate-800 text-blue-300 py-2 px-4 rounded-md font-medium border border-slate-700">Flood Risk Modeling</span>
-                        <span class="bg-slate-800 text-blue-300 py-2 px-4 rounded-md font-medium border border-slate-700">Machine Learning</span>
-                        <span class="bg-slate-800 text-blue-300 py-2 px-4 rounded-md font-medium border border-slate-700">Python/R</span>
-                        <span class="bg-slate-800 text-blue-300 py-2 px-4 rounded-md font-medium border border-slate-700">Academic Writing</span>
-                        <span class="bg-slate-800 text-blue-300 py-2 px-4 rounded-md font-medium border border-slate-700">Data Visualization</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="py-20 fade-in-section">
-            <h2 class="text-3xl font-bold text-white text-center mb-2">My Research Works</h2>
-            <p class="text-center text-slate-400 mb-12">Selected Publications & Studies</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                <!-- Project Card 1 -->
-                <div class="bg-slate-800 rounded-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 shadow-lg border border-slate-700">
-                    <!-- 
-                         UPDATED IMAGE SOURCE:
-                         - Changed to 'Research_Image_1.jpg'
-                         - Please upload your specific flood risk map/diagram with this filename.
-                    -->
-                    <img src="Research_Image_1.jpg" onerror="this.src='https://placehold.co/600x400/1e293b/94a3b8?text=Upload+Research+Image'" alt="Flood Risk Assessment Map" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold text-white mb-2 leading-tight">Integrated morphometric and machine learning-based flood risk assessment</h3>
-                        <p class="text-sm text-slate-400 mb-4">A comprehensive investigation of the Rangit River Basin to clarify hydrological behavior using morphometric analysis and ML algorithms to prioritize sub-watersheds.</p>
-                        <div class="flex space-x-4">
-                            <a href="https://scholar.google.com/citations?hl=en&user=-IJKGfAAAAAJ" target="_blank" class="text-blue-400 hover:text-blue-500 font-semibold flex items-center gap-2 text-sm">View Publication <i data-feather="external-link" class="w-4 h-4"></i></a>
+                <div class="skills-container">
+                    <h3>Technical Skills & Tools</h3>
+                    <div class="skill-tags">
+                    <span class="skill-tag"><i class="fas fa-globe-americas"></i> ArcGIS Pro</span>
+                    <span class="skill-tag"><i class="fas fa-map-marked-alt"></i> QGIS</span>
+                    <span class="skill-tag"><i class="fas fa-code"></i> RStudio</span>
+                    <span class="skill-tag"><i class="fas fa-satellite"></i> Google Earth Engine (GEE)</span>
+                    <span class="skill-tag"><i class="fas fa-cloud"></i> Google Colab</span>
+                    <span class="skill-tag"><i class="fas fa-sitemap"></i> Multi-Criteria Decision Method (MCDM)</span>
+                    <span class="skill-tag"><i class="fas fa-robot"></i> Machine Learning (ML)</span>
+                    <span class="skill-tag"><i class="fas fa-network-wired"></i> Deep Learning (DL)</span>
+                    <span class="skill-tag"><i class="fas fa-exclamation-triangle"></i> Multi-Hazard Risk Modeling</span>
+                    <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
+                    <span class="skill-tag"><i class="fas fa-file-code"></i> LaTeX & GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Seminars Section -->
+        <section id="education">
+            <h2 class="section-title">Academic Journey</h2>
+            <span class="section-subtitle">Education, Seminars & Conferences</span>
+
+            <div class="academic-grid">
+                
+                <!-- Education Timeline Box -->
+                <div class="academic-box">
+                    <h3><i class="fas fa-graduation-cap"></i> Education Background</h3>
+                    <div class="timeline">
+                        
+                        <!-- Education Item 1 -->
+                        <div class="timeline-item">
+                            <div class="timeline-date"> 2025 - Present</div>
+                            <h4>Ph.D. in Geography</h4>
+                            <h5><a href="https://raiganjuniversity.ac.in/" target="_blank" style="text-decoration: none; color: inherit;">Raiganj University</a></h5>
+                            <p>Research Focus: Geospatial Modelling of Multi-Hazard Risk in the Rangit River Basin: Integrating Flood and Landslide Modelling.</p>
                         </div>
+
+                        <!-- Education Item 2 -->
+                        <div class="timeline-item">
+                            <div class="timeline-date"> 2022 - 2024 </div>
+                            <h4>B.Ed. in Geography</h4>
+                            <h5><a href="https://bsaeu.in/" target="_blank" style="text-decoration: none; color: inherit;">Baba Saheb Ambedkar Education University</a></h5>
+                            <p>Methodology Subject: Geography | Achieved: 84.60%</p>
+                        </div>
+
+                        <!-- Education Item 3 -->
+                        <div class="timeline-item">
+                            <div class="timeline-date"> 2020 - 2022 </div>
+                            <h4>M.Sc. in Geography</h4>
+                            <h5><a href="https://raiganjuniversity.ac.in/" target="_blank" style="text-decoration: none; color: inherit;">Raiganj University</a></h5>
+                            <p>Special Paper: Fluvial Geomorphology | Post-Graduated 1st Class with Distinction (83%)</p>
+                        </div>
+                        
+                        <!-- Education Item 4 -->
+                        <div class="timeline-item">
+                            <div class="timeline-date"> 2017 - 2020 </div>
+                            <h4>B.Sc. in Geography</h4>
+                            <h5><a href="https://raiganjuniversity.ac.in/" target="_blank" style="text-decoration: none; color: inherit;">Raiganj University</a></h5>
+                            <p>Geography Honours | Graduated 1st Class (77.7%)</p>
+                        </div>
+
                     </div>
                 </div>
 
-                <!-- Project Card 2 -->
-                <div class="bg-slate-800 rounded-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 shadow-lg border border-slate-700">
-                    <img src="https://placehold.co/600x400/1e293b/94a3b8?text=Research+Work" alt="Project 2" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold text-white mb-2 leading-tight">Research Title</h3>
-                        <p class="text-sm text-slate-400 mb-4">Description of the research work goes here.</p>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-blue-400 hover:text-blue-500 font-semibold flex items-center gap-2 text-sm">View Publication <i data-feather="external-link" class="w-4 h-4"></i></a>
+                <!-- Seminars Box -->
+                <div class="academic-box">
+                    <h3><i class="fas fa-microphone-alt"></i> Seminars & Conferences</h3>
+                    <div class="seminar-list">
+                        
+                        <!-- Seminar Item 1 -->
+                        <div class="seminar-item">
+                            <div class="seminar-date">30-31 January & 1 February, 2026</div>
+                            <h4>Ecosystem Restoration, Disaster Risk Reduction and Resilient Society in Changing Climate</h4>
+                            <h5>Organized by: <a href="https://www.buruniv.ac.in/" target="_blank" style="text-decoration: none; color: inherit;">University of Burdwan</a></h5>
+                            <p><strong>Presented Paper:</strong> Prioritization of Sub-Watersheds for Soil Erosion Management in the Rangit River Basin: A Morphometric and Multi-Criteria Decision-Making Approach</p>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Project Card 3 -->
-                <div class="bg-slate-800 rounded-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 shadow-lg border border-slate-700">
-                    <img src="https://placehold.co/600x400/1e293b/94a3b8?text=Research+Work" alt="Project 3" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold text-white mb-2 leading-tight">Research Title</h3>
-                        <p class="text-sm text-slate-400 mb-4">Description of the research work goes here.</p>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-blue-400 hover:text-blue-500 font-semibold flex items-center gap-2 text-sm">View Publication <i data-feather="external-link" class="w-4 h-4"></i></a>
-                        </div>
+                        <!-- Seminar Item 2 -->
+                        <!-- <div class="seminar-item">
+                            <div class="seminar-date">[Date, e.g., November 2025]</div>
+                            <h4>[Title of the Seminar or Conference]</h4>
+                            <h5>Organized by: [Name of University/Organization, Location]</h5>
+                            <p><strong>Presented Paper:</strong> [Write your paper title here]</p>
+                        </div>-->
+
+                        <!-- Seminar Item 3 -->
+                        <!-- <div class="seminar-item">
+                            <div class="seminar-date">[Date/Year]</div>
+                            <h4>[Title of the Seminar or Conference]</h4>
+                            <h5>Organized by: [Name of University/Organization, Location]</h5>
+                            <p><strong>Presented Paper:</strong> [Write your paper title here]</p>
+                        </div>-->
+
                     </div>
                 </div>
 
             </div>
         </section>
+
+        <!-- Research Section -->
+        <section id="research">
+            <h2 class="section-title">My Research Works</h2>
+            <span class="section-subtitle">Selected Publications & Studies</span>
+            
+            <div class="research-grid">
+                
+                <div class="research-card">
+                    <img src="Research_Image_2.jpg" alt="Prioritization of sub-watersheds for soil erosion management" class="research-image" onerror="this.src='https://placehold.co/600x400/1e293b/94a3b8?text=Soil+Erosion+Paper'">
+                    <div class="research-content">
+                        <span class="journal-tag">Sustainable Geosciences: People, Planet and Prosperity</span>
+                        <h3>Prioritization of sub-watersheds for soil erosion management in the Rangit River Basin: A morphometric and multi-criteria decision-making approach</h3>
+                        <p class="authors"><strong>Pintu Das</strong>,<strong>Prolay Mondal</strong> (2026)</p>
+                        <p>An integrated Multi-Criteria Decision-Making (MCDM) framework utilizing TOPSIS, SAW, and COPRAS alongside Shannon's entropy method to analyze erosion susceptibility and prioritize sub-watersheds (SW1-SW6) for targeted conservation.</p>
+                        <a href="https://doi.org/10.1016/j.susgeo.2026.100022" target="_blank" class="research-link">
+                            View Publication (DOI) <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <img src="Research_Image_1.jpg" alt="Flood Risk Assessment Map" class="research-image" onerror="this.src='https://placehold.co/600x400/1e293b/94a3b8?text=Flood+Risk+Paper'">
+                    <div class="research-content">
+                        <span class="journal-tag">Discover Applied Sciences</span>
+                        <h3>Integrated morphometric and machine learning-based flood risk assessment in the Rangit river sub-watersheds, Eastern Himalayas</h3>
+                        <p class="authors"><strong>Pintu Das</strong>, <strong>et al.</strong> (2025)</p>
+                        <p>A comprehensive investigation of the Rangit River Basin to clarify hydrological behavior using morphometric analysis and ML algorithms to prioritize sub-watersheds.</p>
+                        <a href="https://doi.org/10.1007/s42452-025-07776-7" target="_blank" class="research-link">
+                            View Publication (DOI) <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!--<div class="research-card">
+                    <img src="https://placehold.co/600x400/1e293b/94a3b8?text=PhD+Research" alt="PhD Thesis Project" class="research-image">
+                    <div class="research-content">
+                        <span class="journal-tag">Ongoing Doctoral Research</span>
+                        <h3>Geospatial Modelling of Multi-Hazard Risk in the Rangit River Basin</h3>
+                        <p class="authors"><strong>Pintu Das</strong></p>
+                        <p>Focusing on integrating flood and landslide susceptibility zonation, soil erosion management, and sub-watershed prioritization utilizing high-resolution geospatial datasets and advanced analytical techniques.</p>
+                        <a href="#about" class="research-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>-->
+
+            </div>
+        </section>
+
+    <!-- Qualifications & Certifications Section -->
+        <section id="certifications">
+            <h2 class="section-title">Qualifications & Certifications</h2>
+            <span class="section-subtitle">Diplomas and Professional Training</span>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+        
+        <!-- WEBEL Diploma -->
+        <div style="background: var(--white); padding: 1.8rem; border-radius: 12px; border-top: 5px solid #3b82f6; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="font-size: 0.85rem; font-weight: 600; color: #3b82f6; background: #eff6ff; padding: 0.3rem 0.8rem; border-radius: 20px;">2023</span>
+                <i class="fas fa-laptop-code" style="color: #3b82f6; font-size: 1.2rem;"></i>
+            </div>
+            <h4 style="color: var(--primary-color); font-size: 1.1rem; margin-bottom: 0.8rem; line-height: 1.4;">One Year Diploma in Software Application</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; font-weight: 500; margin: 0;"><i class="fas fa-building" style="margin-right: 5px;"></i> WEBEL</p>
+        </div>
+
+        <!-- IIRS Certificate 1 -->
+        <div style="background: var(--white); padding: 1.8rem; border-radius: 12px; border-top: 5px solid #f59e0b; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="font-size: 0.85rem; font-weight: 600; color: #f59e0b; background: #fef3c7; padding: 0.3rem 0.8rem; border-radius: 20px;">2024</span>
+                <i class="fas fa-satellite" style="color: #f59e0b; font-size: 1.2rem;"></i>
+            </div>
+            <h4 style="color: var(--primary-color); font-size: 1.1rem; margin-bottom: 0.8rem; line-height: 1.4;">RS & GIS Applications in Natural Resource Management</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; font-weight: 500; margin: 0;"><i class="fas fa-space-shuttle" style="margin-right: 5px;"></i> IIRS, ISRO</p>
+        </div>
+
+        <!-- IIRS Certificate 2 -->
+        <div style="background: var(--white); padding: 1.8rem; border-radius: 12px; border-top: 5px solid #f59e0b; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="font-size: 0.85rem; font-weight: 600; color: #f59e0b; background: #fef3c7; padding: 0.3rem 0.8rem; border-radius: 20px;">2024</span>
+                <i class="fas fa-leaf" style="color: #f59e0b; font-size: 1.2rem;"></i>
+            </div>
+            <h4 style="color: var(--primary-color); font-size: 1.1rem; margin-bottom: 0.8rem; line-height: 1.4;">Deep Learning in Ecological Studies</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; font-weight: 500; margin: 0;"><i class="fas fa-space-shuttle" style="margin-right: 5px;"></i> IIRS, ISRO</p>
+        </div>
+
+        <!-- IIRS Certificate 3 -->
+        <div style="background: var(--white); padding: 1.8rem; border-radius: 12px; border-top: 5px solid #f59e0b; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="font-size: 0.85rem; font-weight: 600; color: #f59e0b; background: #fef3c7; padding: 0.3rem 0.8rem; border-radius: 20px;">2025</span>
+                <i class="fas fa-database" style="color: #f59e0b; font-size: 1.2rem;"></i>
+            </div>
+            <h4 style="color: var(--primary-color); font-size: 1.1rem; margin-bottom: 0.8rem; line-height: 1.4;">Archival and Access of the Space Science Data</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; font-weight: 500; margin: 0;"><i class="fas fa-space-shuttle" style="margin-right: 5px;"></i> IIRS, ISRO</p>
+        </div>
+
+        <!-- IIRS Certificate 4 -->
+        <div style="background: var(--white); padding: 1.8rem; border-radius: 12px; border-top: 5px solid #f59e0b; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="font-size: 0.85rem; font-weight: 600; color: #f59e0b; background: #fef3c7; padding: 0.3rem 0.8rem; border-radius: 20px;">2025</span>
+                <i class="fas fa-map-marked-alt" style="color: #f59e0b; font-size: 1.2rem;"></i>
+            </div>
+            <h4 style="color: var(--primary-color); font-size: 1.1rem; margin-bottom: 0.8rem; line-height: 1.4;">Geospatial Technology for Modelling of Urban Environment</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; font-weight: 500; margin: 0;"><i class="fas fa-space-shuttle" style="margin-right: 5px;"></i> IIRS, ISRO</p>
+        </div>
+
+        <!-- CEOS Certificate -->
+        <div style="background: var(--white); padding: 1.8rem; border-radius: 12px; border-top: 5px solid #f59e0b; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="font-size: 0.85rem; font-weight: 600; color: #f59e0b; background: #fef3c7; padding: 0.3rem 0.8rem; border-radius: 20px;">2025</span>
+                <i class="fas fa-satellite-dish" style="color: #f59e0b; font-size: 1.2rem;"></i>
+            </div>
+            <h4 style="color: var(--primary-color); font-size: 1.1rem; margin-bottom: 0.8rem; line-height: 1.4;">Primer on Interferometric SAR Remote Sensing</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; font-weight: 500; margin: 0;"><i class="fas fa-globe" style="margin-right: 5px;"></i> CEOS (ISRO, NASA, ESA, UN-SPIDER)</p>
+        </div>
+
+        <!-- NIDM 1 -->
+        <div style="background: var(--white); padding: 1.8rem; border-radius: 12px; border-top: 5px solid #10b981; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="font-size: 0.85rem; font-weight: 600; color: #10b981; background: #d1fae5; padding: 0.3rem 0.8rem; border-radius: 20px;">2025</span>
+                <i class="fas fa-shield-alt" style="color: #10b981; font-size: 1.2rem;"></i>
+            </div>
+            <h4 style="color: var(--primary-color); font-size: 1.1rem; margin-bottom: 0.8rem; line-height: 1.4;">Comprehensive Disaster Risk Management Framework</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; font-weight: 500; margin: 0;"><i class="fas fa-hands-helping" style="margin-right: 5px;"></i> NIDM</p>
+        </div>
+
+        <!-- NIDM 2 -->
+        <div style="background: var(--white); padding: 1.8rem; border-radius: 12px; border-top: 5px solid #10b981; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="font-size: 0.85rem; font-weight: 600; color: #10b981; background: #d1fae5; padding: 0.3rem 0.8rem; border-radius: 20px;">2025</span>
+                <i class="fas fa-house-damage" style="color: #10b981; font-size: 1.2rem;"></i>
+            </div>
+            <h4 style="color: var(--primary-color); font-size: 1.1rem; margin-bottom: 0.8rem; line-height: 1.4;">Earthquake Risk Reduction</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; font-weight: 500; margin: 0;"><i class="fas fa-hands-helping" style="margin-right: 5px;"></i> NIDM</p>
+        </div>
+
+        <!-- NIDM 3 -->
+        <div style="background: var(--white); padding: 1.8rem; border-radius: 12px; border-top: 5px solid #10b981; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="font-size: 0.85rem; font-weight: 600; color: #10b981; background: #d1fae5; padding: 0.3rem 0.8rem; border-radius: 20px;">2025</span>
+                <i class="fas fa-city" style="color: #10b981; font-size: 1.2rem;"></i>
+            </div>
+            <h4 style="color: var(--primary-color); font-size: 1.1rem; margin-bottom: 0.8rem; line-height: 1.4;">Safe Cities</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; font-weight: 500; margin: 0;"><i class="fas fa-hands-helping" style="margin-right: 5px;"></i> NIDM</p>
+            </div>
+
+        </div>
+    </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 text-center fade-in-section">
-            <h2 class="text-3xl font-bold text-white mb-2">Get In Touch</h2>
-            <p class="text-slate-400 mb-8 max-w-2xl mx-auto">I'm open to research collaborations and academic discussions. Feel free to reach out via email.</p>
-            <!-- Replace with your email -->
-            <a href="mailto:your.email@example.com" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg transition-transform transform hover:scale-105 duration-300 inline-block">
-                Send Email
-            </a>
+        <section id="contact" style="padding: 60px 0;">
+            <h2 class="section-title" style="margin-bottom: 5px;">Get in Touch</h2>
+            <span class="section-subtitle" style="margin-bottom: 30px;">Let's Collaborate</span>
+
+            <div class="academic-box" style="max-width: 650px; margin: 0 auto; text-align: left; border-top: 5px solid #3b82f6; box-shadow: 0 10px 25px rgba(0,0,0,0.06); border-radius: 16px; padding: 2rem; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
+                <h3 style="text-align: center; color: var(--primary-color); margin-bottom: 0.5rem; font-size: 1.3rem;">Let's Collaborate</h3>
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.8rem; font-size: 0.9rem; line-height: 1.5;">
+                    I am always open to discussing academic research, geospatial modeling collaborations, or potential data science projects.
+                </p>
+
+                <!-- Formspree Contact Form -->
+                <form action="https://formspree.io/f/xaeynweg" method="POST" style="display: flex; flex-direction: column; gap: 1.1rem;">
+                    
+                    <div>
+                        <label style="display: block; font-weight: 600; margin-bottom: 0.3rem; color: #1e3a8a; font-size: 0.85rem;">Your Name</label>
+                        <input type="text" name="name" required placeholder="Enter your name" style="width: 100%; padding: 0.75rem 0.9rem; border: 1.5px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 0.9rem; outline: none; background: #fff; transition: all 0.3s;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.15)';" onblur="this.style.borderColor='#cbd5e1'; this.style.boxShadow='none';">
+                    </div>
+
+                    <div>
+                        <label style="display: block; font-weight: 600; margin-bottom: 0.3rem; color: #1e3a8a; font-size: 0.85rem;">Your Email</label>
+                        <input type="email" name="email" required placeholder="Enter your email address" style="width: 100%; padding: 0.75rem 0.9rem; border: 1.5px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 0.9rem; outline: none; background: #fff; transition: all 0.3s;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.15)';" onblur="this.style.borderColor='#cbd5e1'; this.style.boxShadow='none';">
+                    </div>
+
+                    <div>
+                        <label style="display: block; font-weight: 600; margin-bottom: 0.3rem; color: #1e3a8a; font-size: 0.85rem;">Your Message</label>
+                        <textarea name="message" rows="4" required placeholder="Write your message here..." style="width: 100%; padding: 0.75rem 0.9rem; border: 1.5px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 0.9rem; outline: none; background: #fff; resize: vertical; transition: all 0.3s;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.15)';" onblur="this.style.borderColor='#cbd5e1'; this.style.boxShadow='none';"></textarea>
+                    </div>
+
+                    <button type="submit" style="background: linear-gradient(135deg, #1d4ed8, #3b82f6); color: white; border: none; padding: 0.85rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(59,130,246,0.25);" onmouseover="this.style.opacity='0.92'; this.style.transform='translateY(-1px)';" onmouseout="this.style.opacity='1'; this.style.transform='translateY(0)';">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
         </section>
 
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800">
-        <div class="container mx-auto px-6 py-6 text-center text-slate-500">
-            <p>&copy; 2025 Pintu Das. All Rights Reserved.</p>
-        </div>
+    <footer>
+        <p>© 2026 Pintu Das. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        // --- Feather Icons Initialization ---
-        feather.replace();
-
-        // --- Mobile Menu Toggle ---
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // --- Smooth Scrolling & Active Nav Link ---
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                
-                if (targetId === '#') {
-                    return;
-                }
-
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                }
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.5
-        };
-
-        const sectionObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    navLinks.forEach(link => {
-                        link.classList.remove('nav-active');
-                        if (link.getAttribute('href') === `#${id}`) {
-                            link.classList.add('nav-active');
-                        }
-                    });
-                }
-            });
-        }, observerOptions);
-
-        sections.forEach(section => {
-            sectionObserver.observe(section);
-        });
-
-        // --- Fade-in Animation on Scroll ---
-        const faders = document.querySelectorAll('.fade-in-section');
-        const appearOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-
-        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    return;
-                } else {
-                    entry.target.classList.add('is-visible');
-                    appearOnScroll.unobserve(entry.target);
-                }
-            });
-        }, appearOptions);
-
-        faders.forEach(fader => {
-            appearOnScroll.observe(fader);
-        });
-    </script>
 </body>
-
 </html>
