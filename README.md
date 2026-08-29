@@ -14,7 +14,7 @@ Welcome to the official repository of my personal academic and professional port
 
 ## 🌐 Live Website
 You can visit and explore the live portfolio website here:  
-👉 [https://dpintu240.github.io/Pintu/](https://dpintu240.github.io/Pintu/)
+👉 [https://dpintu240.github.io/Portfolio/](https://dpintu240.github.io/Portfolio/)
 
 ## 📬 Contact & Collaboration
 Feel free to reach out via the contact form on the website or connect with me for research collaborations in geospatial modeling and environmental risk management.
