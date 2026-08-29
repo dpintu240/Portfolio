@@ -511,33 +511,37 @@
             font-size: 0.9rem;
         }
 
-        /* Responsive Fix for Hero/Home Section */
-        @media (max-width: 992px) {
+        /* Responsive Fixes - Perfectly Balanced for Mobile & Desktop */
+        @media screen and (max-width: 992px) {
             .hero, #home {
-                display: flex;
-                flex-direction: row !important; /* মোবাইলেও পাশাপাশি রাখবে, নিচে নামতে দেবে না */
-                align-items: center;
-                justify-content: space-between;
-                text-align: left;
-                padding-top: 120px;
-                gap: 20px;
+                flex-direction: column !important;
+                text-align: center !important;
+                padding-top: 100px !important;
             }
-            .hero h1, #home h1 {
-                font-size: 2.2rem;
+            .hero-image, #home img {
+                margin: 20px auto 0 auto !important;
             }
             .hero p, #home p {
-                font-size: 0.9rem;
+                margin: 0 auto 2rem auto !important;
+            }
+            .social-links {
+                justify-content: center !important;
             }
             .about-grid, .academic-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
             }
         }
 
-        /* খুব ছোট মোবাইল স্ক্রিনের জন্য (যেমন খুব ছোট ফোন) */
-        @media (max-width: 576px) {
-            .hero, #home {
-                flex-direction: column !important; /* স্ক্রিন খুব ছোট হলে শুধু তখন নিচে নামবে */
-                text-align: center;
+        @media screen and (max-width: 768px) {
+            .nav-container {
+                flex-direction: column !important;
+                gap: 1rem !important;
+            }
+            nav a {
+                margin: 0 0.5rem !important;
+            }
+            .hero h1, #home h1 {
+                font-size: 2.3rem !important;
             }
         }
     </style>
