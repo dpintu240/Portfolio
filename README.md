@@ -9,7 +9,7 @@ Welcome to the official repository of my personal academic and professional port
 
 ## 🛠️ Tech Stack & Geospatial Tools
 * **GIS & Remote Sensing:** ArcGIS Pro, Google Earth Engine, QGIS, Sentinel-1 SAR.
-* **Methodologies:** Multi-Criteria Decision-Making (MCMC/MCDM - AHP, TOPSIS, VIKOR, COPRAS, SAW), Machine Learning (SVM, RFE).
+* **Methodologies:** Multi-Criteria Decision-Methods (MCDM - AHP, FAHP, TOPSIS, VIKOR, COPRAS, SAW), Machine Learning (SVM, RF, XGBoost) and Deep Learning (ANN, CNN).
 * **Programming & Documentation:** RStudio (`ggplot2`, `corrplot`), Python, SPSS, LaTeX.
 
 ## 🌐 Live Website
