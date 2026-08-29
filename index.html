@@ -513,12 +513,12 @@
 
         /* Responsive */
         @media (max-width: 992px) {
-            .hero {
+            .hero, #home {
                 flex-direction: column;
                 text-align: center;
-                padding-top: 150px;
+                padding-top: 100px;
             }
-            .hero p {
+            .hero p, #home p {
                 margin: 0 auto 2rem;
             }
             .social-links {
@@ -539,10 +539,10 @@
                 gap: 1rem;
             }
             nav a {
-                margin: 0 1rem;
+                margin: 0 0.5rem;
             }
-            .hero h1 {
-                font-size: 3rem;
+            .hero h1, #home h1 {
+                font-size: 2.5rem; /* মোবাইল স্ক্রিনের জন্য ফন্ট সাইজ একটু ছোট করা হলো যাতে লাইনে থাকে */
             }
         }
     </style>
