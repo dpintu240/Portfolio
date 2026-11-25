@@ -684,6 +684,78 @@
             .pp-reveal { opacity: 1; transform: none; transition: none; }
         }
     </style>
+    <style id="pro-graphics">
+        /* Floating eligibility badges */
+        .hero div[style*="flex-wrap: wrap"] > span { animation: pp-float 4s ease-in-out infinite; }
+        .hero div[style*="flex-wrap: wrap"] > span:nth-of-type(2) { animation-delay: .6s; }
+        .hero div[style*="flex-wrap: wrap"] > span:nth-of-type(3) { animation-delay: 1.2s; }
+        @keyframes pp-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+        /* Sparkles around the profile photo */
+        .pp-spark { position: absolute; z-index: 2; pointer-events: none; animation: pp-twinkle 3s ease-in-out infinite; }
+        .pp-spark svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 0 6px rgba(245,158,11,.55)); }
+        @keyframes pp-twinkle { 0%,100% { transform: scale(1) rotate(0deg); opacity: .95; } 50% { transform: scale(.65) rotate(45deg); opacity: .45; } }
+
+        /* Quick-facts counters in hero: one row on desktop */
+        .pp-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 0 0 24px; }
+        .pp-stat { background: #fff; border: 1px solid #e2e8f0; border-top: 3px solid #2563eb; border-radius: 14px;
+            padding: .6rem .3rem; text-align: center; min-width: 0; box-shadow: 0 10px 22px -12px rgba(15,23,42,.25); }
+        .pp-stat:nth-child(2) { border-top-color: #7c3aed; }
+        .pp-stat:nth-child(3) { border-top-color: #db2777; }
+        .pp-stat:nth-child(4) { border-top-color: #10b981; }
+        .pp-stat strong { display: block; font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; font-weight: 800; line-height: 1.1;
+            background: linear-gradient(120deg,#2563eb,#7c3aed,#db2777); -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent; }
+        .pp-stat span { display: block; margin-top: 2px; font-size: clamp(.56rem, .85vw, .7rem); color: #64748b;
+            text-transform: uppercase; letter-spacing: .05em; font-weight: 700; overflow-wrap: anywhere; }
+
+        /* Section background patterns (decorative, under the content) */
+        section:not(.hero) > * { position: relative; z-index: 1; }
+        #about::before, #education::before, #research::before, #certifications::before, #contact::before {
+            content: ''; position: absolute; inset: 0 -100vmax; pointer-events: none; z-index: 0; }
+        #about::before { background-image: radial-gradient(#2563eb 1.2px, transparent 1.4px); background-size: 22px 22px; opacity: .14; }
+        #education::before { background-image: repeating-linear-gradient(-45deg, #7c3aed 0 2px, transparent 2px 16px); opacity: .08; }
+        #research::before { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'%3E%3Cpath d='M0 20 Q15 0 30 20 T60 20 T90 20 T120 20' fill='none' stroke='%23059669' stroke-width='2'/%3E%3C/svg%3E") repeat-x left bottom / 120px 40px; opacity: .35; }
+        #certifications::before { background-image: repeating-radial-gradient(circle at 100% 0, #ea580c 0 2px, transparent 2px 28px); opacity: .10; }
+        #contact::before { background-image: linear-gradient(rgba(219,39,119,.7) 1px, transparent 1px), linear-gradient(90deg, rgba(219,39,119,.7) 1px, transparent 1px); background-size: 40px 40px; opacity: .08; }
+
+        /* Education timeline: gradient line in place of the old solid line */
+        .timeline { border-left: 2px solid transparent; background: linear-gradient(180deg,#2563eb,#7c3aed,#db2777) left top / 2px 100% no-repeat; background-origin: border-box; }
+
+        /* Skill icons in small coloured circles */
+        .skill-tag i { display: inline-grid; place-items: center; width: 26px; height: 26px; margin-right: 6px; border-radius: 50%;
+            background: rgba(255,255,255,.9); box-shadow: 0 2px 6px rgba(15,23,42,.12); font-size: .8rem; transition: transform .3s; }
+        .skill-tag:hover i { transform: rotate(-12deg) scale(1.12); }
+
+        /* Research: journal icon and corner glow */
+        .journal-tag::before { font-family: 'Font Awesome 6 Free'; font-weight: 900; content: '\f02d'; margin-right: 6px; }
+        .research-card { position: relative; }
+        .research-card::before { content: ''; position: absolute; top: 0; right: 0; width: 150px; height: 150px; pointer-events: none; z-index: 1;
+            background: radial-gradient(circle at top right, rgba(5,150,105,.22), transparent 70%); }
+
+        /* Footer social icons */
+        .pp-foot-social { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-bottom: 18px; }
+        .pp-foot-social a { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 1.05rem;
+            background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); transition: transform .3s, background .3s; }
+        .pp-foot-social a:hover { transform: translateY(-4px); background: linear-gradient(120deg,#2563eb,#7c3aed,#db2777); }
+
+        @media (max-width: 768px) {
+            .pp-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero div[style*="flex-wrap: wrap"] > span, .pp-spark { animation: none !important; }
+        }
+    </style>
+    <style id="pro-header">
+        /* Coloured header bar (replaces the white glass look) */
+        header, header.pp-scrolled { background: linear-gradient(100deg,#1e3a8a 0%,#4c1d95 50%,#9d174d 100%) !important; border-bottom: none !important; }
+        header.pp-scrolled { box-shadow: 0 12px 30px -10px rgba(76,29,149,.45) !important; }
+        header .logo { color: #fff !important; }
+        header .logo span { background: none !important; color: #fde68a !important; -webkit-text-fill-color: #fde68a !important; }
+        header nav a { color: #fff !important; }
+        header nav a::after { background: linear-gradient(90deg,#fde68a,#fbcfe8) !important; }
+        header nav a:hover, header nav a.pp-active { color: #fde68a !important; }
+    </style>
 </head>
 <body>
 
@@ -1106,6 +1178,90 @@
                 });
             }
         } catch (err) { /* polish is optional; never break the page */ }
+    })();
+    </script>
+    <script>
+    (function () {
+        try {
+            var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            /* 1) Sparkles around the profile photo */
+            var heroImg = document.querySelector('.hero-image');
+            if (heroImg) {
+                [
+                    { t: '6%',  l: '-7%',  s: 28, d: '0s',   c: '#f59e0b' },
+                    { t: '60%', l: '-11%', s: 18, d: '.8s',  c: '#7c3aed' },
+                    { t: '-5%', l: '70%',  s: 22, d: '1.6s', c: '#db2777' },
+                    { t: '86%', l: '82%',  s: 16, d: '2.2s', c: '#2563eb' }
+                ].forEach(function (p) {
+                    var sp = document.createElement('span');
+                    sp.className = 'pp-spark';
+                    sp.setAttribute('aria-hidden', 'true');
+                    sp.style.cssText = 'top:' + p.t + ';left:' + p.l + ';width:' + p.s + 'px;height:' + p.s + 'px;animation-delay:' + p.d;
+                    sp.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 0 L14.5 9.5 L24 12 L14.5 14.5 L12 24 L9.5 14.5 L0 12 L9.5 9.5 Z" fill="' + p.c + '"/></svg>';
+                    heroImg.appendChild(sp);
+                });
+            }
+
+            /* 2) Quick-facts counters (numbers counted from this page's own content) */
+            var social = document.querySelector('.hero .social-links');
+            if (social) {
+                var wrap = document.createElement('div');
+                wrap.className = 'pp-stats';
+                [['Publications', 2], ['Certificates', 5], ['Qualifications', 3], ['Skills', 11]].forEach(function (x) {
+                    var b = document.createElement('div');
+                    b.className = 'pp-stat';
+                    b.innerHTML = '<strong data-count="' + x[1] + '">' + (reduce ? x[1] : 0) + '</strong><span>' + x[0] + '</span>';
+                    wrap.appendChild(b);
+                });
+                social.parentNode.insertBefore(wrap, social);
+
+                var run = function (el) {
+                    var end = +el.getAttribute('data-count');
+                    if (reduce) { el.textContent = end; return; }
+                    var t0 = null;
+                    var step = function (ts) {
+                        if (t0 === null) t0 = ts;
+                        var p = Math.min((ts - t0) / 1000, 1);
+                        el.textContent = Math.round(end * p);
+                        if (p < 1) requestAnimationFrame(step);
+                    };
+                    requestAnimationFrame(step);
+                };
+                var nums = wrap.querySelectorAll('strong');
+                if ('IntersectionObserver' in window) {
+                    var io = new IntersectionObserver(function (es) {
+                        es.forEach(function (e) { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
+                    }, { threshold: 0.5 });
+                    nums.forEach(function (n) { io.observe(n); });
+                } else {
+                    nums.forEach(run);
+                }
+            }
+
+            /* 3) Footer social icons (same existing links, nothing new) */
+            var foot = document.querySelector('footer');
+            if (foot) {
+                var fs = document.createElement('div');
+                fs.className = 'pp-foot-social';
+                [
+                    ['https://www.linkedin.com/in/pintu-das-23211217b/', 'fab fa-linkedin', 'LinkedIn'],
+                    ['https://www.researchgate.net/profile/Pintu-Das-7?ev=hdr_xprf', 'fab fa-researchgate', 'ResearchGate'],
+                    ['https://scholar.google.com/citations?hl=en&user=-IJKGfAAAAAJ', 'fas fa-graduation-cap', 'Google Scholar'],
+                    ['https://x.com/dpintu240', 'fa-brands fa-x-twitter', 'X (Twitter)']
+                ].forEach(function (x) {
+                    var a = document.createElement('a');
+                    a.href = x[0];
+                    a.target = '_blank';
+                    a.rel = 'noopener';
+                    a.title = x[2];
+                    a.setAttribute('aria-label', x[2]);
+                    a.innerHTML = '<i class="' + x[1] + '"></i>';
+                    fs.appendChild(a);
+                });
+                foot.insertBefore(fs, foot.firstChild);
+            }
+        } catch (err) { /* decorative layer only; never break the page */ }
     })();
     </script>
 </body>
